@@ -49,5 +49,5 @@ end
 
 
 group :development, :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require =>  false
 end
