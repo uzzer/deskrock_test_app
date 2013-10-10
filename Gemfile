@@ -47,8 +47,12 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'haml-rails', :group => :development
+gem 'haml-rails'
 
 group :development, :test do
-  gem 'cucumber-rails', :require =>  false
+  gem 'cucumber-rails'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
 end
