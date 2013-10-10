@@ -1,0 +1,25 @@
+= form_for @stock do |f|
+  - if @stock.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@stock.errors.count, "error")} prohibited this stock from being saved:"
+      %ul
+        - @stock.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :price
+    = f.text_field :price
+  .field
+    = f.label :quantity
+    = f.number_field :quantity
+  .field
+    = f.label :percentage
+    = f.text_field :percentage
+  .field
+    = f.label :years
+    = f.number_field :years
+  .actions
+    = f.submit 'Save'
