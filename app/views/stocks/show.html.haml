@@ -1,21 +1,47 @@
 %p#notice= notice
 
-%p
+%h2 Calculation result
+
+%p#name
   %b Name:
   = @stock.name
-%p
+%p#price
   %b Price:
-  = @stock.price
-%p
+  = "%.2f" % @stock.price
+%p#quantity
   %b Quantity:
   = @stock.quantity
-%p
+%p#percentage
   %b Percentage:
-  = @stock.percentage
-%p
+  = "%.2f" %@stock.percentage
+%p#years
   %b Years:
   = @stock.years
 
+%ul#calculation
+  - @calculation_result.each do |result|
+    %li{:data => {:year => result[:year]}}
+      = "#{result[:year]} - #{ "%.2f" % result[:stock_price]}"
+
+%script(src="https://www.google.com/jsapi")
+:javascript
+     google.load("visualization", "1", {packages:["corechart"]});
+     google.setOnLoadCallback(drawChart);
+     function drawChart() {
+             var data = google.visualization.arrayToDataTable(
+              #{@calculation_result_for_google_api.to_s}
+             );
+
+             var options = {
+               title: 'Stock price'
+             };
+
+             var chart = new google.visualization.LineChart(document.getElementById('stock_graph'));
+             chart.draw(data, options);
+           }
+
+#stock_graph
+
 = link_to 'Edit', edit_stock_path(@stock)
 \|
-= link_to 'Back', stocks_path
+= link_to "Back", :back
