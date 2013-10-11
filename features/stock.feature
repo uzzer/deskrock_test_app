@@ -58,6 +58,7 @@ Feature: Calculate stock productivity
       | Name         | Price  | Quantity | Percentage | Years |
       | Apple        | 172.00 | 10       | 5.00       | 10    |
       | Microsoft    | 30     | 25       | 1.25       | 5     |
+      | Company XYZ  | 2.00   | 200      | 3.00       | 10    |
 
     When I open the application url
     Then I must see the front page with application title "Stock productivity calculator"
