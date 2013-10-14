@@ -1,27 +1,48 @@
-%h2 Calculation result
+.page-header
+  %h2 Calculation result
 
 %p#notice= notice
 
-%p#name
-  %b Name:
-  = @stock.name
-%p#price
-  %b Price:
-  = "%.2f" % @stock.price
-%p#quantity
-  %b Quantity:
-  = @stock.quantity
-%p#percentage
-  %b Percentage:
-  = "%.2f" %@stock.percentage
-%p#years
-  %b Years:
-  = @stock.years
+.row
+  .col-md-2
+    %p#name
+      %b Name:
+      = @stock.name
+    %p#price
+      %b Price:
+      = "%.2f" % @stock.price
+    %p#quantity
+      %b Quantity:
+      = @stock.quantity
+    %p#percentage
+      %b Percentage:
+      = "%.2f" %@stock.percentage
+    %p#years
+      %b Years:
+      = @stock.years
 
-%ul#calculation
-  - @calculation_result.each do |result|
-    %li{:data => {:year => result[:year]}}
-      = "#{result[:year]} - #{ "%.2f" % result[:stock_price]}"
+  .col-md-3
+    %table.table.table-striped.col-sm-4
+      %thead
+        %th
+          Year
+        %th
+          Price
+      %tbody
+        - @calculation_result.each do |row|
+          %tr{:data => {year: row[:year]}}
+            %td
+              =row[:year]
+            %td
+              ="%.2f" % row[:stock_price]
+
+  .col-md-7
+    #stock_graph
+
+/%ul#calculation
+/  - @calculation_result.each do |result|
+/    %li{:data => {:year => result[:year]}}
+/      = "#{result[:year]} - #{ "%.2f" % result[:stock_price]}"
 
 %script(src="https://www.google.com/jsapi")
 :javascript
@@ -40,7 +61,6 @@
              chart.draw(data, options);
            }
 
-#stock_graph
-
+%hr
 = link_to 'Edit', edit_stock_path(@stock), class: "btn"
 = link_to "Back", :back, class: "btn"

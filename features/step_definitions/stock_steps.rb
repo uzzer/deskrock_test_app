@@ -53,7 +53,7 @@ When(/^list of stock values for each year:$/) do |table|
   # table is a | 1  | 412.00 |
   inputs = table.rows_hash
   inputs.each do |year_nth, value_of_nth|
-    within("//li[@data-year='#{year_nth}']") do
+    within("//tr[@data-year='#{year_nth}']") do
       page.should have_content(inputs[year_nth])
     end
   end
@@ -118,5 +118,7 @@ Then(/^I must see the already calculated data$/) do
 
   # But, I know context. Let's verify.
   page.should have_content('Name: Company XYZ')
-  page.should have_content('5 - 463.71')
+  within("//tr[@data-year='5']") do
+    page.should have_content('463.71')
+  end
 end
