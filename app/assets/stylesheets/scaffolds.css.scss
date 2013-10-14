@@ -3,18 +3,16 @@
 }
 
 .field_with_errors {
-  background-color: red;
+
 }
+
+
+@import "twitter/bootstrap";
 
 #error_explanation {
   @extend .alert;
   @extend .alert-danger;
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+
   h2 {
     text-align: left;
     font-weight: bold;
@@ -22,9 +20,9 @@
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
+    color: #c00;
   }
+
   ul li {
     font-size: 12px;
     list-style: square;

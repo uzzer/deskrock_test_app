@@ -8,8 +8,6 @@
     %th Quantity
     %th Percentage
     %th Years
-    %th
-    %th
 
   - @stocks.each do |stock|
     %tr
@@ -18,8 +16,6 @@
       %td= stock.quantity
       %td= "%.2f" % stock.percentage
       %td= stock.years
-      %td= link_to 'Edit', edit_stock_path(stock)
-      %td= link_to 'Destroy', stock, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
