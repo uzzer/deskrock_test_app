@@ -1,3 +1,16 @@
 // Place all the styles related to the Stocks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#stock-index-table {
+  max-width: 600px;
+}
+
+.small_column{
+  max-width: 30px; word-wrap: break-word;
+}
+
+.medium_column{
+  max-width: 40px;    word-wrap: break-word;
+}

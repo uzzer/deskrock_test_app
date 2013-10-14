@@ -1,2 +1,16 @@
-%h1 About
-%p Test application for DeskRock
+.page-header
+  %h1 About
+
+%row
+  .col-md-5
+    %p
+      This application made by
+      = link_to 'Mihhail Sidorin', 'http://www.linkedin.com/in/mihhailsidorin'
+      as a test web application for
+      = link_to 'DeskRock', 'http://www.deskrock.ee/'
+      company.
+      It's written using
+      %acronym{title:'Behaviour Driven Development'} BDD
+      and based on
+      = link_to 'stock.feature', '/stock.feature'
+      cucumber file.

@@ -1,20 +1,22 @@
 .page-header
   %h2 Listing stocks
 
-%table.table.table-striped
+%table#stock-index-table.table.table-striped
   %tr
     %th Name
-    %th Price
-    %th Quantity
-    %th Percentage
-    %th Years
+    %th.medium_column Price
+    %th.small_column
+      %acronym{title:'Quantity'} Qt.
+    %th.small_column Percentage
+    %th.small_column
+      %acronym{title:'Years stock exists'} Yrs
 
   - @stocks.each do |stock|
     %tr
       %td= link_to stock.name, stock
       %td=  stock.price
       %td= stock.quantity
-      %td= "%.2f" % stock.percentage
+      %td= "#{"%.2f" % stock.percentage}%"
       %td= stock.years
 
 %br

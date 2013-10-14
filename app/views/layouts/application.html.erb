@@ -21,7 +21,9 @@
 
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li><a href="/pages/about">About</a></li>
+      <% unless current_page? pages_about_path %>
+        <li><a href="/pages/about">About</a></li>
+      <% end%>
     </ul>
   </div>
 </nav>
