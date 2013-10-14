@@ -12,7 +12,7 @@
   - @stocks.each do |stock|
     %tr
       %td= link_to stock.name, stock
-      %td= "%.2f" % stock.price
+      %td=  stock.price
       %td= stock.quantity
       %td= "%.2f" % stock.percentage
       %td= stock.years

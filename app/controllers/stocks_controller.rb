@@ -13,7 +13,9 @@ class StocksController < ApplicationController
   # GET /stocks/1.json
   def show
     @calculation_result = @stock.get_calculation_hash
-    @calculation_result_for_google_api = convert_calculation_to_gapi_format @calculation_result
+
+    @calculation_result_for_chartjs = "[#{@calculation_result.map { |e| e[:stock_price].round(2).to_s }.join(', ')}]"
+    @calculation_result_labels_for_chartjs = "[#{@calculation_result.map { |e| e[:year] }.join(', ')}]"
   end
 
   # GET /stocks/new

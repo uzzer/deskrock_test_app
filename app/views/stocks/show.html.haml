@@ -38,28 +38,29 @@
 
   .col-md-7
     #stock_graph
-
-/%ul#calculation
-/  - @calculation_result.each do |result|
-/    %li{:data => {:year => result[:year]}}
-/      = "#{result[:year]} - #{ "%.2f" % result[:stock_price]}"
+    %canvas#stock_graph2{:height => "450", :width => "600"}
 
 %script(src="https://www.google.com/jsapi")
 :javascript
-     google.load("visualization", "1", {packages:["corechart"]});
-     google.setOnLoadCallback(drawChart);
-     function drawChart() {
-             var data = google.visualization.arrayToDataTable(
-              #{@calculation_result_for_google_api.to_s}
-             );
+  var lineOptions = {
+      bezierCurve: false,
+      animation: false
+  };
 
-             var options = {
-               title: 'Stock price'
-             };
+  var data = {
+    labels : #{@calculation_result_labels_for_chartjs},
+    datasets : [
+        {
+            fillColor : "rgba(220,220,220,0.5)",
+            strokeColor : "rgba(220,220,220,1)",
+            pointColor : "rgba(220,220,220,1)",
+            pointStrokeColor : "#fff",
+            data : #{@calculation_result_for_chartjs}
+        }
+    ]
+  };
+  myNewChart = new Chart($("#stock_graph2").get(0).getContext("2d")).Line(data, lineOptions)
 
-             var chart = new google.visualization.LineChart(document.getElementById('stock_graph'));
-             chart.draw(data, options);
-           }
 
 %hr
 = link_to 'Edit', edit_stock_path(@stock), class: "btn"
