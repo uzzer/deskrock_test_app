@@ -22,7 +22,7 @@ end
 When(/^I must be able to enter the following values:$/) do |table|
   # table is a | Price      | 2.00        | required decimal |
   inputs = table.raw.map { |e| { e[0] => e[1] } }.reduce Hash.new, :merge
-  fill_in('stock_name', with: inputs['Stock Name'])
+  fill_in('stock_name', with: inputs['Stock name'])
   fill_in('stock_price', with: inputs['Price'])
   fill_in('stock_quantity', with: inputs['Quantity'])
   fill_in('stock_percentage', with: inputs['Percentage'])

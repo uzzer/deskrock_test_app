@@ -1,6 +1,7 @@
-%h1 Listing stocks
+.page-header
+  %h1 Listing stocks
 
-%table
+%table.table.table-striped
   %tr
     %th Name
     %th Price
@@ -22,4 +23,4 @@
 
 %br
 
-= button_to 'Enter new stock', new_stock_path
+= button_to 'Enter new stock', new_stock_path, class:"btn btn-default"

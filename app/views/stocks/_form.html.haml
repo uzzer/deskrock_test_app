@@ -1,4 +1,4 @@
-= form_for @stock do |f|
+= form_for(@stock, html: {class: "form-horizontal", role: "form"}) do |f|
   - if @stock.errors.any?
     #error_explanation
       %h2= "#{pluralize(@stock.errors.count, "error")} prohibited this stock from being saved:"
@@ -7,19 +7,31 @@
           %li= msg
 
   .field
-    = f.label :name
-    = f.text_field :name
+    .form-group
+      = f.label :name, class:"col-lg-2 control-label"
+      .col-lg-4
+        = f.text_field :name, class:"form-control", placeholder: "Stock name"
   .field
-    = f.label :price
-    = f.text_field :price
+    .form-group
+      = f.label :price, class:"col-lg-2 control-label"
+      .col-lg-2
+        = f.number_field :price, class:"form-control", placeholder: "Price", min:0, :step => "any"
   .field
-    = f.label :quantity
-    = f.number_field :quantity
+    .form-group
+      = f.label :quantity, class:"col-lg-2 control-label"
+      .col-lg-2
+        = f.number_field :quantity, class:"form-control", placeholder: "Quantity", min: 1
   .field
-    = f.label :percentage
-    = f.text_field :percentage
+    .form-group
+      = f.label :percentage, class:"col-lg-2 control-label"
+      .col-lg-2
+        = f.number_field :percentage, class:"form-control", placeholder: "Percentage", min:0, :step => "any"
   .field
-    = f.label :years
-    = f.number_field :years
-  .actions
-    = f.submit 'Calculate'
+    .form-group
+      = f.label :years, class:"col-lg-2 control-label"
+      .col-lg-2
+        = f.number_field :years, class:"form-control", placeholder: "Years", min: 1
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      .actions
+        = f.submit 'Calculate', class:"btn btn-default"

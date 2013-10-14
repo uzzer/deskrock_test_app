@@ -1,7 +1,5 @@
-%h1 Enter stock details
-
+.page-header
+  %h1 Enter stock details
 = render 'form'
-
-= link_to 'Show', @stock
-\|
-= link_to 'Back', stocks_path
+= link_to 'Back', stocks_path, class: "btn"
+= link_to 'Destroy', @stock, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
