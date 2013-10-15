@@ -1,5 +1,5 @@
-Given(/^The web applications runs on Heroku$/) do
-  # TODO: Provide host
+Given(/^[tT]he web applications runs on Heroku$/) do
+  # TODO: Ask it it required to make tests dependant from host.
 end
 
 When(/^I open the application url$/) do
@@ -77,9 +77,6 @@ When(/^I click "([^"]*)"$/) do |text|
   click_link(text)
 end
 
-Given(/^the web applications runs on Heroku$/) do
-  # TODO: Implement Heroku details later
-end
 
 Given(/^the system has already calculated stocks$/) do |data|
   # table is a | Apple        | 172.00 | 10       | 5.00       | 10    |
