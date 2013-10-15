@@ -1,23 +1,24 @@
 .page-header
   %h2 Listing stocks
-
-%table#stock-index-table.table.table-striped
-  %tr
-    %th Name
-    %th.medium_column Price
-    %th.small_column
-      %acronym{title:'Quantity'} Qt.
-    %th.small_column Percentage
-    %th.small_column
-      %acronym{title:'Years stock exists'} Yrs
-
-  - @stocks.each do |stock|
+- if @stocks.empty?
+  %p Stocks list is empty.
+-else
+  %table#stock-index-table.table.table-striped
     %tr
-      %td= link_to stock.name, stock
-      %td=  stock.price
-      %td= stock.quantity
-      %td= "#{"%.2f" % stock.percentage}%"
-      %td= stock.years
+      %th Name
+      %th.medium_column Price
+      %th.small_column
+        %acronym{title:'Quantity'} Qt.
+      %th.small_column Percentage
+      %th.small_column
+        %acronym{title:'Years stock exists'} Yrs
+    - @stocks.each do |stock|
+      %tr
+        %td= link_to stock.name, stock
+        %td=  stock.price
+        %td= stock.quantity
+        %td= "#{"%.2f" % stock.percentage}%"
+        %td= stock.years
 
 %br
 
