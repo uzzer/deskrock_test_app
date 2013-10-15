@@ -34,7 +34,10 @@
             %td
               =row[:year]
             %td
-              ="%.2f" % row[:stock_price]
+              - if row[:stock_price] < @MAXIMUM_VALUE_SHOWN_AS_LONG
+                ="%.2f" % row[:stock_price]
+              - else
+                ="%.3E" % row[:stock_price]
 
   .col-md-7
     #stock_graph

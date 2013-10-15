@@ -9,6 +9,8 @@ class StocksController < ApplicationController
     @stocks = Stock.all
   end
 
+
+
   # GET /stocks/1
   # GET /stocks/1.json
   def show
@@ -16,6 +18,8 @@ class StocksController < ApplicationController
 
     @calculation_result_for_chartjs = "[#{@calculation_result.map { |e| e[:stock_price].round(2).to_s }.join(', ')}]"
     @calculation_result_labels_for_chartjs = "[#{@calculation_result.map { |e| e[:year] }.join(', ')}]"
+
+    @MAXIMUM_VALUE_SHOWN_AS_LONG = 10**9
   end
 
   # GET /stocks/new
