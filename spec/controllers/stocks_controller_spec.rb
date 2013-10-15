@@ -23,7 +23,12 @@ describe StocksController do
   # This should return the minimal set of attributes required to create a valid
   # Stock. As you add validations to Stock, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { { "name" => "Company XYZ",
+                             "price" => 2,
+                             "quantity" => 200,
+                             "percentage" => 3,
+                             "years" => 10
+                          }}
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -128,7 +133,7 @@ describe StocksController do
         stock = Stock.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Stock.any_instance.stub(:save).and_return(false)
-        put :update, {:id => stock.to_param, :stock => { "name" => "invalid value" }}, valid_session
+        put :update, { id: stock.to_param, stock: { 'price' => -3 }}, valid_session
         assigns(:stock).should eq(stock)
       end
 
@@ -136,7 +141,7 @@ describe StocksController do
         stock = Stock.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Stock.any_instance.stub(:save).and_return(false)
-        put :update, {:id => stock.to_param, :stock => { "name" => "invalid value" }}, valid_session
+        put :update, { id: stock.to_param, stock: { 'price' => -3 }}, valid_session
         response.should render_template("edit")
       end
     end

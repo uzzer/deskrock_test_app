@@ -1,28 +1,26 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+This is test application for DeskRock company
 
 * Ruby version
+Ruby 2.0
 
 * System dependencies
+Dev environment tested under Mac OS X
 
 * Configuration
 
 * Database creation
+sqlite database support required
 
 * Database initialization
+db:migrate should be enough
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+test supportes:
+- cucumber
+- rspec
+- rcov
 
 * Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Deploy to Heroku as usual app
