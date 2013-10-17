@@ -40,8 +40,7 @@
                 ="%.3E" % row[:stock_price]
 
   .col-md-7
-    #stock_graph
-    %canvas#stock_graph2{:height => "450", :width => "600"}
+    %canvas#stock_graph{:height => "450", :width => "600"}
 
 :javascript
   var lineOptions = {
@@ -61,7 +60,7 @@
         }
     ]
   };
-  myNewChart = new Chart($("#stock_graph2").get(0).getContext("2d")).Line(data, lineOptions)
+  myNewChart = new Chart($("#stock_graph").get(0).getContext("2d")).Line(data, lineOptions)
 
 
 %hr
