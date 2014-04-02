@@ -59,7 +59,7 @@ end
 gem 'haml-rails'
 
 group :development, :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'capybara-webkit'
