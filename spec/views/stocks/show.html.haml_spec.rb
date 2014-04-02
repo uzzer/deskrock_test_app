@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe "stocks/show" do
+describe 'stocks/show' do
   before(:each) do
     @stock = assign(:stock, stub_model(Stock,
-      :name => "Name",
-      :price => "9.99",
+      :name => 'Name',
+      :price => '9.99',
       :quantity => 1,
-      :percentage => "9.99",
+      :percentage => '9.99',
       :years => 2
     ))
     @calculation_result = assign(:calculation_result, [{ year: 0, stock_price: 9.99 },
@@ -15,7 +15,7 @@ describe "stocks/show" do
     @MAXIMUM_VALUE_SHOWN_AS_LONG = 10**9
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Name/)

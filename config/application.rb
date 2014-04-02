@@ -20,7 +20,7 @@ module DeskrockTestApp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+    config.action_view.field_error_proc = Proc.new { |html_tag, _|
       "<div class=\"field_with_errors control-group has-error\">#{html_tag}</div>".html_safe
     }
   end

@@ -1,37 +1,37 @@
-= form_for(@stock, html: {class: "form-horizontal", role: "form"}) do |f|
+= form_for(@stock, html: {class: 'form-horizontal', role: 'form'}) do |f|
   - if @stock.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@stock.errors.count, "error")} prohibited this stock from being saved:"
+      %h2= "#{pluralize(@stock.errors.count, 'error')} prohibited this stock from being saved:"
       %ul
         - @stock.errors.full_messages.each do |msg|
           %li= msg
 
   .field
     .form-group
-      = f.label :name, class:"col-lg-2 control-label"
+      = f.label :name, class:'col-lg-2 control-label'
       .col-lg-4
-        = f.text_field :name, class:"form-control", placeholder: "Stock name"
+        = f.text_field :name, class:'form-control', placeholder: 'Stock name'
   .field
     .form-group
-      = f.label :price, class:"col-lg-2 control-label"
+      = f.label :price, class:'col-lg-2 control-label'
       .col-lg-2
-        = f.number_field :price, class:"form-control", placeholder: "Price", min:0, :step => "any"
+        = f.number_field :price, class:'form-control', placeholder: 'Price', min:0, :step => 'any'
   .field
     .form-group
-      = f.label :quantity, class:"col-lg-2 control-label"
+      = f.label :quantity, class:'col-lg-2 control-label'
       .col-lg-2
-        = f.number_field :quantity, class:"form-control", placeholder: "Quantity", min: 1
+        = f.number_field :quantity, class:'form-control', placeholder: 'Quantity', min: 1
   .field
     .form-group
-      = f.label :percentage, class:"col-lg-2 control-label"
+      = f.label :percentage, class:'col-lg-2 control-label'
       .col-lg-2
-        = f.number_field :percentage, class:"form-control", placeholder: "Percentage", min:0, :step => "any"
+        = f.number_field :percentage, class:'form-control', placeholder: 'Percentage', min:0, :step => 'any'
   .field
     .form-group
-      = f.label :years, class:"col-lg-2 control-label"
+      = f.label :years, class:'col-lg-2 control-label'
       .col-lg-2
-        = f.number_field :years, class:"form-control", placeholder: "Years", min: 1
+        = f.number_field :years, class:'form-control', placeholder: 'Years', min: 1
   .form-group
     .col-lg-offset-2.col-lg-10
       .actions
-        = f.submit 'Calculate', class:"btn btn-default"
+        = f.submit 'Calculate', class:'btn btn-default'

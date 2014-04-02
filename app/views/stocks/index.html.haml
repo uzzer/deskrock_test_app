@@ -17,9 +17,9 @@
         %td= link_to stock.name, stock
         %td=  stock.price
         %td= stock.quantity
-        %td= "#{"%.2f" % stock.percentage}%"
+        %td= "#{'%.2f' % stock.percentage}%"
         %td= stock.years
 
 %br
 
-= button_to 'Enter new stock', new_stock_path, class:"btn btn-default"
+= button_to 'Enter new stock', new_stock_path, class:'btn btn-default'

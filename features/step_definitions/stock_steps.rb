@@ -52,7 +52,7 @@ end
 When(/^list of stock values for each year:$/) do |table|
   # table is a | 1  | 412.00 |
   inputs = table.rows_hash
-  inputs.each do |year_nth, value_of_nth|
+  inputs.each do |year_nth, _|
     within("//tr[@data-year='#{year_nth}']") do
       page.should have_content(inputs[year_nth])
     end
@@ -80,6 +80,7 @@ end
 
 Given(/^the system has already calculated stocks$/) do |data|
   # table is a | Apple        | 172.00 | 10       | 5.00       | 10    |
+  #noinspection RubyStringKeysInHashInspection
   mappings =
       {
        'Name' => 'name',
