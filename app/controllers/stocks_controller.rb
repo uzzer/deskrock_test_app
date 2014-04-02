@@ -41,11 +41,11 @@ class StocksController < ApplicationController
         format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
         format.json { render action: 'show', status: :created, location: @stock }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
+        render_action_or_error(format, 'new')
       end
     end
   end
+
 
   # PATCH/PUT /stocks/1
   # PATCH/PUT /stocks/1.json
@@ -55,8 +55,7 @@ class StocksController < ApplicationController
         format.html { redirect_to @stock, notice: 'Stock was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
+        render_action_or_error(format, 'edit')
       end
     end
   end
@@ -73,7 +72,12 @@ class StocksController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
+  def render_action_or_error(format, action)
+    format.html { render action: action }
+    format.json { render json: @stock.errors, status: :unprocessable_entity }
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
     def set_stock
       @stock = Stock.find(params[:id])
     end
