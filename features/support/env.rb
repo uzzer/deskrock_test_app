@@ -63,7 +63,7 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 #TODO: Fix random choice. Follow some arch logic in driver selection.
 Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :firefox)
+  Capybara::Selenium::Driver.new(app, browser: :firefox)
 end
 Capybara.current_driver = :selenium
 
