@@ -9,11 +9,9 @@ describe Stock do
   }}
 
   context "correct attributes behaviour" do
-    before(:all) do
-      @stock = Stock.new(valid_attributes)
-    end
+    let(:stock) { Stock.new(valid_attributes) }
 
-    subject { @stock }
+    subject { stock }
 
     it { should respond_to :name }
     it { should respond_to :price }
@@ -22,7 +20,7 @@ describe Stock do
     it { should respond_to :years }
 
     it "should correctly return calculation for specific year" do
-      @stock.price_for_year(2).should be_within(0.001).of(424.36)
+      stock.price_for_year(2).should be_within(0.001).of(424.36)
     end
 
     test_hash = {year: 0, stock_price: 400.00},
@@ -38,7 +36,7 @@ describe Stock do
         {year: 10, stock_price: 537.57}
 
     it "should correctly return hash of calculations for specific year" do
-      hash = @stock.get_calculation_hash
+      hash = stock.get_calculation_hash
       hash.select{|x| x[:year]==2}.first[:stock_price].should be == 424.36
     end
 
