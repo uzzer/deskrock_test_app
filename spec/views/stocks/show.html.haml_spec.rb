@@ -9,6 +9,10 @@ describe "stocks/show" do
       :percentage => "9.99",
       :years => 2
     ))
+    @calculation_result = assign(:calculation_result, [{ year: 0, stock_price: 9.99 },
+                                       { year: 1, stock_price: 10.99 },
+                                       { year: 2, stock_price: 12.09 }])
+    @MAXIMUM_VALUE_SHOWN_AS_LONG = 10**9
   end
 
   it "renders attributes in <p>" do
