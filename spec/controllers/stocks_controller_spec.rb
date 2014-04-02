@@ -47,7 +47,7 @@ describe StocksController do
   describe 'GET show' do
     it 'assigns the requested stock as @stock' do
       stock = Stock.create! valid_attributes
-      get :show, {:id => stock.to_param}, valid_session
+      get :show, {id: stock.to_param}, valid_session
       assigns(:stock).should eq(stock)
     end
   end
@@ -62,7 +62,7 @@ describe StocksController do
   describe 'GET edit' do
     it 'assigns the requested stock as @stock' do
       stock = Stock.create! valid_attributes
-      get :edit, {:id => stock.to_param}, valid_session
+      get :edit, {id: stock.to_param}, valid_session
       assigns(:stock).should eq(stock)
     end
   end
@@ -71,18 +71,18 @@ describe StocksController do
     describe 'with valid params' do
       it 'creates a new Stock' do
         expect {
-          post :create, {:stock => valid_attributes}, valid_session
+          post :create, {stock: valid_attributes}, valid_session
         }.to change(Stock, :count).by(1)
       end
 
       it 'assigns a newly created stock as @stock' do
-        post :create, {:stock => valid_attributes}, valid_session
+        post :create, {stock: valid_attributes}, valid_session
         assigns(:stock).should be_a(Stock)
         assigns(:stock).should be_persisted
       end
 
       it 'redirects to the created stock' do
-        post :create, {:stock => valid_attributes}, valid_session
+        post :create, {stock: valid_attributes}, valid_session
         response.should redirect_to(Stock.last)
       end
     end
@@ -92,7 +92,7 @@ describe StocksController do
         # Trigger the behavior that occurs when invalid params are submitted
         Stock.any_instance.stub(:save).and_return(false)
         #noinspection RubyStringKeysInHashInspection
-        post :create, {:stock => { 'name' => 'invalid value'}}, valid_session
+        post :create, {stock: { 'name' => 'invalid value'}}, valid_session
         assigns(:stock).should be_a_new(Stock)
       end
 
@@ -100,7 +100,7 @@ describe StocksController do
         # Trigger the behavior that occurs when invalid params are submitted
         Stock.any_instance.stub(:save).and_return(false)
         #noinspection RubyStringKeysInHashInspection
-        post :create, {:stock => { 'name' => 'invalid value'}}, valid_session
+        post :create, {stock: { 'name' => 'invalid value'}}, valid_session
         response.should render_template('new')
       end
     end
@@ -117,18 +117,18 @@ describe StocksController do
         #noinspection RubyStringKeysInHashInspection
         Stock.any_instance.should_receive(:update).with({ 'name' => 'MyString'})
         #noinspection RubyStringKeysInHashInspection
-        put :update, {:id => stock.to_param, :stock => { 'name' => 'MyString'}}, valid_session
+        put :update, {id: stock.to_param, stock: { 'name' => 'MyString'}}, valid_session
       end
 
       it 'assigns the requested stock as @stock' do
         stock = Stock.create! valid_attributes
-        put :update, {:id => stock.to_param, :stock => valid_attributes}, valid_session
+        put :update, {id: stock.to_param, stock: valid_attributes}, valid_session
         assigns(:stock).should eq(stock)
       end
 
       it 'redirects to the stock' do
         stock = Stock.create! valid_attributes
-        put :update, {:id => stock.to_param, :stock => valid_attributes}, valid_session
+        put :update, {id: stock.to_param, stock: valid_attributes}, valid_session
         response.should redirect_to(stock)
       end
     end
@@ -158,13 +158,13 @@ describe StocksController do
     it 'destroys the requested stock' do
       stock = Stock.create! valid_attributes
       expect {
-        delete :destroy, {:id => stock.to_param}, valid_session
+        delete :destroy, {id: stock.to_param}, valid_session
       }.to change(Stock, :count).by(-1)
     end
 
     it 'redirects to the stocks list' do
       stock = Stock.create! valid_attributes
-      delete :destroy, {:id => stock.to_param}, valid_session
+      delete :destroy, {id: stock.to_param}, valid_session
       response.should redirect_to(stocks_url)
     end
   end

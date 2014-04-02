@@ -12,11 +12,11 @@ describe StocksController do
     end
 
     it 'routes to #show' do
-      get('/stocks/1').should route_to('stocks#show', :id => '1')
+      get('/stocks/1').should route_to('stocks#show', id: '1')
     end
 
     it 'routes to #edit' do
-      get('/stocks/1/edit').should route_to('stocks#edit', :id => '1')
+      get('/stocks/1/edit').should route_to('stocks#edit', id: '1')
     end
 
     it 'routes to #create' do
@@ -24,11 +24,11 @@ describe StocksController do
     end
 
     it 'routes to #update' do
-      put('/stocks/1').should route_to('stocks#update', :id => '1')
+      put('/stocks/1').should route_to('stocks#update', id: '1')
     end
 
     it 'routes to #destroy' do
-      delete('/stocks/1').should route_to('stocks#destroy', :id => '1')
+      delete('/stocks/1').should route_to('stocks#destroy', id: '1')
     end
 
   end

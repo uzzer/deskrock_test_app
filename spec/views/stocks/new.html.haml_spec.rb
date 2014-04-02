@@ -3,11 +3,11 @@ require 'spec_helper'
 describe 'stocks/new' do
   before(:each) do
     assign(:stock, stub_model(Stock,
-      :name => 'MyString',
-      :price => '9.99',
-      :quantity => 1,
-      :percentage => '9.99',
-      :years => 1
+      name: 'MyString',
+      price: '9.99',
+      quantity: 1,
+      percentage: '9.99',
+      years: 1
     ).as_new_record)
   end
 

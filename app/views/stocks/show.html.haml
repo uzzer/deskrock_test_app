@@ -30,7 +30,7 @@
           Price
       %tbody
         - @calculation_result.each do |row|
-          %tr{:data => {year: row[:year]}}
+          %tr{data: {year: row[:year]}}
             %td
               =row[:year]
             %td
@@ -40,7 +40,7 @@
                 ='%.3E' % row[:stock_price]
 
   .col-md-7
-    %canvas#stock_graph{:height => '450', :width => '600'}
+    %canvas#stock_graph{height: '450', width: '600'}
 
 :javascript
   var lineOptions = {

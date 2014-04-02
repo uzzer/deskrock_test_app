@@ -7,7 +7,7 @@ DeskrockTestApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'stocks#index'
-  match '/stocks/new' => 'stocks#new', :via => :post, :as => :stocks_new_post
+  match '/stocks/new' => 'stocks#new', via: :post, as: :stocks_new_post
 
 
   # Example of regular route:

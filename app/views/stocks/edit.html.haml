@@ -2,6 +2,6 @@
   %h1 Enter stock details
 = render 'form'
 = link_to '← Back', stocks_path, class: 'btn'
-= link_to 'Destroy stock', @stock, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+= link_to 'Destroy stock', @stock, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
 
 
