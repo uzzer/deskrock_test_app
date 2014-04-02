@@ -10,13 +10,13 @@
       = @stock.name
     %p#price
       %b Price:
-      = "%.2f" % @stock.price
+      = '%.2f' % @stock.price
     %p#quantity
       %b Quantity:
       = @stock.quantity
     %p#percentage
       %b Percentage:
-      = "%.2f" %@stock.percentage
+      = '%.2f' %@stock.percentage
     %p#years
       %b Years:
       = @stock.years
@@ -30,17 +30,17 @@
           Price
       %tbody
         - @calculation_result.each do |row|
-          %tr{:data => {year: row[:year]}}
+          %tr{data: {year: row[:year]}}
             %td
               =row[:year]
             %td
-              - if row[:stock_price] < @MAXIMUM_VALUE_SHOWN_AS_LONG
-                ="%.2f" % row[:stock_price]
+              - if row[:stock_price] < @max_value_show_as_long
+                ='%.2f' % row[:stock_price]
               - else
-                ="%.3E" % row[:stock_price]
+                ='%.3E' % row[:stock_price]
 
   .col-md-7
-    %canvas#stock_graph{:height => "450", :width => "600"}
+    %canvas#stock_graph{height: '450', width: '600'}
 
 :javascript
   var lineOptions = {
@@ -49,7 +49,7 @@
   };
 
   var data = {
-    labels : #{@calculation_result_labels_for_chartjs},
+    labels : #{@labels_for_chartjs},
     datasets : [
         {
             fillColor : "rgba(220,220,220,0.5)",
@@ -64,5 +64,5 @@
 
 
 %hr
-= link_to '← Back', :back, class: "btn"
-= link_to 'Edit', edit_stock_path(@stock), class: "btn"
+= link_to '← Back', :back, class: 'btn'
+= link_to 'Edit', edit_stock_path(@stock), class: 'btn'

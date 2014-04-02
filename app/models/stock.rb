@@ -5,7 +5,7 @@ class Stock < ActiveRecord::Base
   validates_numericality_of :price, :quantity, :percentage, :years, greater_than: 0
   validates_length_of :name, maximum: 100
   validates_length_of :name, minimum: 2
-  validates_format_of :name, :with => /\A[a-z0-9_.-]+\Z/i
+  validates_format_of :name, with: /\A[a-z0-9_ .-]+\Z/i
 
   def price_for_year(year)
     price * (1 + percentage / 100)**year  * quantity

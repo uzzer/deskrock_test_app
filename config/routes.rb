@@ -1,13 +1,13 @@
 DeskrockTestApp::Application.routes.draw do
   resources :stocks
 
-  get "pages/about"
+  get 'pages/about'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'stocks#index'
-  match "/stocks/new" => "stocks#new", :via => :post, :as => :stocks_new_post
+  match '/stocks/new' => 'stocks#new', via: :post, as: :stocks_new_post
 
 
   # Example of regular route:
