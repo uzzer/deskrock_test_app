@@ -1,4 +1,5 @@
-== README
+READ ME
+=======
 
 This is test application for DeskRock company
 
@@ -26,5 +27,6 @@ test supportes:
 Deploy to Heroku as usual app
 
 [![Code Climate](https://codeclimate.com/github/uzzer/deskrock_test_app.png)](https://codeclimate.com/github/uzzer/deskrock_test_app)
-
-https://www.codeship.io/projects/73ee1d10-923c-0131-2920-02da729fe4bb/status
+[![Dependency Status](https://gemnasium.com/uzzer/deskrock_test_app.svg)](https://gemnasium.com/uzzer/deskrock_test_app)
+[![Build Status](https://travis-ci.org/uzzer/deskrock_test_app.svg?branch=master)](https://travis-ci.org/uzzer/deskrock_test_app)
+[ ![Codeship Status for uzzer/deskrock_test_app](https://codeship.com/projects/73ee1d10-923c-0131-2920-02da729fe4bb/status?branch=master)](https://codeship.com/projects/16486)
