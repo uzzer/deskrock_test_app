@@ -26,14 +26,14 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-
 group :development, :test do
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', require: false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'simplecov-rcov'
+  gem 'rubocop'
 end
 
 gem 'rails_12factor', group: :production
