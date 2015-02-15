@@ -13,14 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20131010192858) do
 
-  create_table 'stocks', force: true do |t|
-    t.string 'name'
-    t.decimal 'price'
-    t.integer 'quantity'
-    t.decimal 'percentage'
-    t.integer 'years'
-    t.datetime 'created_at'
-    t.datetime 'updated_at'
+  create_table "stocks", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.decimal  "price"
+    t.integer  "quantity"
+    t.decimal  "percentage"
+    t.integer  "years"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
