@@ -16,4 +16,21 @@ class Stock < ActiveRecord::Base
     range = (0..years)
     range.map { |year| { year: year, stock_price: price_for_year(year) } }
   end
+
+  def result_for_chartjs
+    hash = calculation_hash
+    { values: stock_values(hash), labels: stock_labels(hash) }
+  end
+
+  private
+
+  def stock_labels(hash)
+    "[#{ hash.map { |e| e[:year] }.join(', ')}]"
+  end
+
+  def stock_values(hash)
+    "[#{hash.map { |e| e[:stock_price].round(2).to_s }.join(', ')}]"
+  end
+
+
 end

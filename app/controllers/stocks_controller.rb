@@ -13,15 +13,20 @@ class StocksController < ApplicationController
   # GET /stocks/1.json
   # TODO: Condisder refactoring
   def show
+    # @calculation_result = @stock.calculation_hash
+    #
+    # rounded_results = @calculation_result.map do |e|
+    #   e[:stock_price].round(2).to_s
+    # end
+    # @calculation_result_for_chartjs = "[#{rounded_results.join(', ')}]"
+    # result_years = @calculation_result.map { |e| e[:year] }
+    # @labels_for_chartjs = "[#{ result_years.join(', ')}]"
+    #
+    # @max_value_show_as_long = 10**9
     @calculation_result = @stock.calculation_hash
-
-    rounded_results = @calculation_result.map do |e|
-      e[:stock_price].round(2).to_s
-    end
-    @calculation_result_for_chartjs = "[#{rounded_results.join(', ')}]"
-    result_years = @calculation_result.map { |e| e[:year] }
-    @labels_for_chartjs = "[#{ result_years.join(', ')}]"
-
+    results = @stock.result_for_chartjs
+    @calculation_result_for_chartjs = results[:values]
+    @labels_for_chartjs = results[:labels]
     @max_value_show_as_long = 10**9
   end
 
