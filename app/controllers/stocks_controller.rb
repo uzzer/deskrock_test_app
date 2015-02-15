@@ -11,13 +11,16 @@ class StocksController < ApplicationController
 
   # GET /stocks/1
   # GET /stocks/1.json
+  # TODO: Condisder refactoring
   def show
-    @calculation_result = @stock.get_calculation_hash
+    @calculation_result = @stock.calculation_hash
 
-    @calculation_result_for_chartjs = "[#{@calculation_result.map { |e|
-                                              e[:stock_price].round(2).to_s }.join(', ')}]"
-    @labels_for_chartjs = "[#{@calculation_result.map { |e|
-                                                          e[:year] }.join(', ')}]"
+    rounded_results = @calculation_result.map do |e|
+      e[:stock_price].round(2).to_s
+    end
+    @calculation_result_for_chartjs = "[#{rounded_results.join(', ')}]"
+    result_years = @calculation_result.map { |e| e[:year] }
+    @labels_for_chartjs = "[#{ result_years.join(', ')}]"
 
     @max_value_show_as_long = 10**9
   end
@@ -38,25 +41,46 @@ class StocksController < ApplicationController
 
     respond_to do |format|
       if @stock.save
-        format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @stock }
+        create_action_html_format(format)
+        create_action_json_format(format)
       else
         render_action_or_error(format, 'new')
       end
     end
   end
 
+  def create_action_json_format(format)
+    format.json do
+      render action: 'show',
+             status: :created,
+             location: @stock
+    end
+  end
+
+  def create_action_html_format(format)
+    format.html do
+      redirect_to @stock,
+                  notice: 'Stock was successfully created.'
+    end
+  end
 
   # PATCH/PUT /stocks/1
   # PATCH/PUT /stocks/1.json
   def update
     respond_to do |format|
       if @stock.update(stock_params)
-        format.html { redirect_to @stock, notice: 'Stock was successfully updated.' }
+        update_format_html(format)
         format.json { head :no_content }
       else
         render_action_or_error(format, 'edit')
       end
+    end
+  end
+
+  def update_format_html(format)
+    format.html do
+      redirect_to @stock,
+                  notice: 'Stock was successfully updated.'
     end
   end
 
@@ -77,16 +101,15 @@ class StocksController < ApplicationController
     format.json { render json: @stock.errors, status: :unprocessable_entity }
   end
 
-  # Use callbacks to share common setup or constraints between actions.
-    def set_stock
-      @stock = Stock.find(params[:id])
-    end
+  def set_stock
+    @stock = Stock.find(params[:id])
+  end
 
-    def stock_params
-      params.require(:stock).permit(:name,
-                                    :price,
-                                    :quantity,
-                                    :percentage,
-                                    :years)
-    end
+  def stock_params
+    params.require(:stock).permit(:name,
+                                  :price,
+                                  :quantity,
+                                  :percentage,
+                                  :years)
+  end
 end

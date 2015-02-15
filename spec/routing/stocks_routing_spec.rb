@@ -1,8 +1,11 @@
 require 'spec_helper'
 
-describe StocksController do
+describe StocksController, type: :request  do
   describe 'routing' do
-
+    # before(:all) do
+    #   @gadget = assign(:gadget, Gadget.create!)
+    # end
+    #
     it 'routes to #index' do
       get('/stocks').should route_to('stocks#index')
     end
@@ -30,6 +33,5 @@ describe StocksController do
     it 'routes to #destroy' do
       delete('/stocks/1').should route_to('stocks#destroy', id: '1')
     end
-
   end
 end

@@ -77,21 +77,22 @@ When(/^I click "([^"]*)"$/) do |text|
   click_link(text)
 end
 
-
 Given(/^the system has already calculated stocks$/) do |data|
   # table is a | Apple        | 172.00 | 10       | 5.00       | 10    |
-  #noinspection RubyStringKeysInHashInspection
+  # noinspection RubyStringKeysInHashInspection
   mappings =
       {
-       'Name' => 'name',
-       'Quantity' => 'quantity',
-       'Price' => 'price',
-       'Percentage' => 'percentage',
-       'Years' => 'years'
+        'Name' => 'name',
+        'Quantity' => 'quantity',
+        'Price' => 'price',
+        'Percentage' => 'percentage',
+        'Years' => 'years'
       }
+  # rubocop:disable Style/EmptyLiteral
   data = data.hashes.map do |h|
     h.map { |k, v| { mappings[k] => v } }.reduce Hash.new, :merge
   end
+  # rubocop:enable Style/EmptyLiteral
   data.each { |d| Stock.create!(d) }
 end
 
