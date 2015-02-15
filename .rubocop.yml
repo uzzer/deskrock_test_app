@@ -1,2 +1,13 @@
-LineLength:
-  Max: 100
+AllCops:
+  Exclude:
+    - db/**/*
+    - config/**/*
+    - script/**/*
+    - lib/tasks/**/*
+    - features/support/env.rb
+
+Documentation:
+  Enabled: false
+
+Style/EmptyLiteral:
+  Enabled: false
