@@ -7,8 +7,8 @@ When(/^I open the application url$/) do
 end
 
 Then(/^I must see the front page with application title "([^"]*)"$/) do |title|
-  current_path.should be == root_path
-  page.should have_content(title)
+  expect(current_path).to eq(root_path)
+  expect(page).to have_content(title)
 end
 
 When(/^I press button "([^"]*)"$/) do |button_text|
@@ -16,7 +16,7 @@ When(/^I press button "([^"]*)"$/) do |button_text|
 end
 
 Then(/^I must see the page with title "([^"]*)"$/) do |title|
-  page.should have_content(title)
+  expect(page).to have_content(title)
 end
 
 When(/^I must be able to enter the following values:$/) do |table|
@@ -33,19 +33,19 @@ When(/^I must see the original input data:$/) do |table|
   # table is a | Price      | 2.00        |
   inputs = table.rows_hash
   within("//p[@id='name']") do
-    page.should have_content(inputs['Stock Name'])
+    expect(page).to have_content(inputs['Stock Name'])
   end
   within("//p[@id='price']") do
-    page.should have_content(inputs['Price'])
+    expect(page).to have_content(inputs['Price'])
   end
   within("//p[@id='quantity']") do
-    page.should have_content(inputs['Quantity'])
+    expect(page).to have_content(inputs['Quantity'])
   end
   within("//p[@id='percentage']") do
-    page.should have_content(inputs['Percentage'])
+    expect(page).to have_content(inputs['Percentage'])
   end
   within("//p[@id='years']") do
-    page.should have_content(inputs['Years'])
+    expect(page).to have_content(inputs['Years'])
   end
 end
 
@@ -54,13 +54,13 @@ When(/^list of stock values for each year:$/) do |table|
   inputs = table.rows_hash
   inputs.each do |year_nth, _|
     within("//tr[@data-year='#{year_nth}']") do
-      page.should have_content(inputs[year_nth])
+      expect(page).to have_content(inputs[year_nth])
     end
   end
 end
 
 When(/^the stock growth is shown as a visual graph$/) do
-  page.should have_css('#stock_graph')
+  expect(page).to have_css('#stock_graph')
 end
 
 When(/^the stock data must be saved into the database for later review$/) do
@@ -101,10 +101,10 @@ When(/^I must see a table of saved stocks:$/) do |table|
   inputs = table.hashes
   inputs.each do |row|
     row = find('tr', text: row['Name'])
-    row.should have_content(row['Price'])
-    row.should have_content(row['Quantity'])
-    row.should have_content(row['Percentage'])
-    row.should have_content(row['Years'])
+    expect(row).to have_content(row['Price'])
+    expect(row).to have_content(row['Quantity'])
+    expect(row).to have_content(row['Percentage'])
+    expect(row).to have_content(row['Years'])
   end
 end
 
@@ -116,8 +116,8 @@ Then(/^I must see the already calculated data$/) do
   # TODO:  Refactoring required. Step description context dependant
 
   # But, I know context. Let's verify.
-  page.should have_content('Name: Company XYZ')
+  expect(page).to have_content('Name: Company XYZ')
   within("//tr[@data-year='5']") do
-    page.should have_content('463.71')
+    expect(page).to have_content('463.71')
   end
 end
