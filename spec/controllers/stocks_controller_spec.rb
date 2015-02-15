@@ -18,18 +18,19 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe StocksController do
-
+describe StocksController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Stock. As you add validations to Stock, be sure to
   # adjust the attributes here as well.
-  #noinspection RubyStringKeysInHashInspection
-  let(:valid_attributes) { { 'name' => 'Company XYZ',
-                             'price' => 2,
-                             'quantity' => 200,
-                             'percentage' => 3,
-                             'years' => 10
-                          }}
+  # noinspection RubyStringKeysInHashInspection
+  let(:valid_attributes) do
+    { 'name' => 'Company XYZ',
+      'price' => 2,
+      'quantity' => 200,
+      'percentage' => 3,
+      'years' => 10
+    }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -47,7 +48,7 @@ describe StocksController do
   describe 'GET show' do
     it 'assigns the requested stock as @stock' do
       stock = Stock.create! valid_attributes
-      get :show, {id: stock.to_param}, valid_session
+      get :show, { id: stock.to_param }, valid_session
       assigns(:stock).should eq(stock)
     end
   end
@@ -62,7 +63,7 @@ describe StocksController do
   describe 'GET edit' do
     it 'assigns the requested stock as @stock' do
       stock = Stock.create! valid_attributes
-      get :edit, {id: stock.to_param}, valid_session
+      get :edit, { id: stock.to_param }, valid_session
       assigns(:stock).should eq(stock)
     end
   end
@@ -70,19 +71,19 @@ describe StocksController do
   describe 'POST create' do
     describe 'with valid params' do
       it 'creates a new Stock' do
-        expect {
-          post :create, {stock: valid_attributes}, valid_session
-        }.to change(Stock, :count).by(1)
+        expect do
+          post :create, { stock: valid_attributes }, valid_session
+        end.to change(Stock, :count).by(1)
       end
 
       it 'assigns a newly created stock as @stock' do
-        post :create, {stock: valid_attributes}, valid_session
+        post :create, { stock: valid_attributes }, valid_session
         assigns(:stock).should be_a(Stock)
         assigns(:stock).should be_persisted
       end
 
       it 'redirects to the created stock' do
-        post :create, {stock: valid_attributes}, valid_session
+        post :create, { stock: valid_attributes }, valid_session
         response.should redirect_to(Stock.last)
       end
     end
@@ -91,16 +92,16 @@ describe StocksController do
       it 'assigns a newly created but unsaved stock as @stock' do
         # Trigger the behavior that occurs when invalid params are submitted
         Stock.any_instance.stub(:save).and_return(false)
-        #noinspection RubyStringKeysInHashInspection
-        post :create, {stock: { 'name' => 'invalid value'}}, valid_session
+        # noinspection RubyStringKeysInHashInspection
+        post :create, { stock: { 'name' => 'invalid value' } }, valid_session
         assigns(:stock).should be_a_new(Stock)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Stock.any_instance.stub(:save).and_return(false)
-        #noinspection RubyStringKeysInHashInspection
-        post :create, {stock: { 'name' => 'invalid value'}}, valid_session
+        # noinspection RubyStringKeysInHashInspection
+        post :create, { stock: { 'name' => 'invalid value' } }, valid_session
         response.should render_template('new')
       end
     end
@@ -114,21 +115,27 @@ describe StocksController do
         # specifies that the Stock created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        #noinspection RubyStringKeysInHashInspection
-        Stock.any_instance.should_receive(:update).with({ 'name' => 'MyString'})
-        #noinspection RubyStringKeysInHashInspection
-        put :update, {id: stock.to_param, stock: { 'name' => 'MyString'}}, valid_session
+        # noinspection RubyStringKeysInHashInspection
+        Stock.any_instance.should_receive(:update).with('name' => 'MyString')
+        # noinspection RubyStringKeysInHashInspection
+        put :update, { id: stock.to_param,
+                       stock: { 'name' => 'MyString' }
+                     }, valid_session
       end
 
       it 'assigns the requested stock as @stock' do
         stock = Stock.create! valid_attributes
-        put :update, {id: stock.to_param, stock: valid_attributes}, valid_session
+        put :update, { id: stock.to_param,
+                       stock: valid_attributes
+                     }, valid_session
         assigns(:stock).should eq(stock)
       end
 
       it 'redirects to the stock' do
         stock = Stock.create! valid_attributes
-        put :update, {id: stock.to_param, stock: valid_attributes}, valid_session
+        put :update, { id: stock.to_param,
+                       stock: valid_attributes
+                     }, valid_session
         response.should redirect_to(stock)
       end
     end
@@ -138,8 +145,10 @@ describe StocksController do
         stock = Stock.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Stock.any_instance.stub(:save).and_return(false)
-        #noinspection RubyStringKeysInHashInspection
-        put :update, { id: stock.to_param, stock: { 'price' => -3 }}, valid_session
+        # noinspection RubyStringKeysInHashInspection
+        put :update, { id: stock.to_param,
+                       stock: { 'price' => -3 }
+                     }, valid_session
         assigns(:stock).should eq(stock)
       end
 
@@ -147,8 +156,10 @@ describe StocksController do
         stock = Stock.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Stock.any_instance.stub(:save).and_return(false)
-        #noinspection RubyStringKeysInHashInspection
-        put :update, { id: stock.to_param, stock: { 'price' => -3 }}, valid_session
+        # noinspection RubyStringKeysInHashInspection
+        put :update, { id: stock.to_param,
+                       stock: { 'price' => -3 }
+                     }, valid_session
         response.should render_template('edit')
       end
     end
@@ -157,16 +168,15 @@ describe StocksController do
   describe 'DELETE destroy' do
     it 'destroys the requested stock' do
       stock = Stock.create! valid_attributes
-      expect {
-        delete :destroy, {id: stock.to_param}, valid_session
-      }.to change(Stock, :count).by(-1)
+      expect do
+        delete :destroy, { id: stock.to_param }, valid_session
+      end.to change(Stock, :count).by(-1)
     end
 
     it 'redirects to the stocks list' do
       stock = Stock.create! valid_attributes
-      delete :destroy, {id: stock.to_param}, valid_session
+      delete :destroy, { id: stock.to_param }, valid_session
       response.should redirect_to(stocks_url)
     end
   end
-
 end
